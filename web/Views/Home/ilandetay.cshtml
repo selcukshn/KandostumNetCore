@@ -1,0 +1,126 @@
+@model IlanDetay
+@{
+    ViewData["Title"] = "İlan Detay";
+}
+<main class="my-5">
+    <section class="container-lg bg-white rounded py-3">
+        <div class="text-end mb-2">
+            <small class="text-decoration-underline">İlan Tarihi: @Model.Ilan.IlanTarihi</small>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 gy-3">
+            <div class="col">
+                <div class="card bg-light border-0 position-relative ilan-detay h-100">
+                    <i class="far fa-clipboard position-absolute ilan-detay-image"></i>
+                    <div class="card-body">
+                        <h5 class="text-darkred card-title mb-3">Hasta Bilgileri</h5>
+                        <div class="row row-cols-2 gy-3">
+                            <div class="col">
+                                <div class="ilan-detay-baslik">İsim</div>
+                                <div class="ilan-detay-text">@Model.Ilan.HastaTamAd</div>
+                            </div>
+                            <div class="col">
+                                <div class="ilan-detay-baslik">Yaş</div>
+                                <div class="ilan-detay-text">@Model.Ilan.HastaYas</div>
+                            </div>
+                            <div class="col">
+                                <div class="ilan-detay-baslik">Kan Grubu</div>
+                                <div class="ilan-detay-text badge bg-danger">@Model.Ilan.KanGrubu.KanGrubu</div>
+                            </div>
+                            <div class="col">
+                                <div class="ilan-detay-baslik">Gerekli Ünite</div>
+                                <div class="ilan-detay-text">@Model.Ilan.GerekliUnite</div>
+                            </div>
+                            <div class="col">
+                                <div class="ilan-detay-baslik">İletişim Numarası</div>
+                                <div class="ilan-detay-text">@Model.Ilan.IletisimNumarasi1</div>
+                            </div>
+                            <div class="col">
+                                <div class="ilan-detay-baslik">İletişim Numarası</div>
+                                <div class="ilan-detay-text">@Model.Ilan.IletisimNumarasi2</div>
+                            </div>
+                            <div class="col-12">
+                                <div class="ilan-detay-baslik">Açıklama</div>
+                                <div class="ilan-detay-text">@Model.Ilan.IlanOzeti</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card border-0 bg-light position-relative ilan-detay h-100">
+                    <i class="far fa-hospital position-absolute ilan-detay-image"></i>
+                    <div class="card-body">
+                        <h5 class="text-darkred card-title mb-3">Hastane Bilgileri</h5>
+                        <div class="row row-cols-2 gy-3">
+                            <div class="col-12">
+                                <div class="ilan-detay-baslik">Ad</div>
+                                <div class="ilan-detay-text">@Model.Ilan.Hastane.Ad</div>
+                            </div>
+                            <div class="col">
+                                <div class="ilan-detay-baslik">Şehir</div>
+                                <div class="ilan-detay-text">@Model.Ilan.Hastane.Sehir</div>
+                            </div>
+                            <div class="col">
+                                <div class="ilan-detay-baslik">İlçe</div>
+                                <div class="ilan-detay-text">@Model.Ilan.Hastane.Ilce</div>
+                            </div>
+                            <div class="col">
+                                <div class="ilan-detay-baslik">İletişim Numarası</div>
+                                <div class="ilan-detay-text">@Model.Ilan.Hastane.UlasimNumarasi</div>
+                            </div>
+                            <div class="col">
+                                <div class="ilan-detay-baslik">İletişim E-posta</div>
+                                <div class="ilan-detay-text">@Model.Ilan.Hastane.UlasimEposta</div>
+                            </div>
+                            <div class="col-12">
+                                <div class="ilan-detay-baslik">Adres</div>
+                                <div class="ilan-detay-text">@Model.Ilan.Hastane.Adres</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @if (Model.IlanVeren != null)
+            {
+                <div class="col">
+                    <div class="card border-0 bg-light position-relative ilan-detay h-100">
+                        <i class="far fa-id-badge position-absolute ilan-detay-image"></i>
+                        <div class="card-body">
+                            <h5 class="text-darkred card-title mb-3">İlan Veren</h5>
+                            <div class="row row-cols-2 gy-3">
+                                <div class="col">
+                                    <div class="ilan-detay-baslik">İsim</div>
+                                    <div class="ilan-detay-text">@Model.IlanVeren.Ad</div>
+                                </div>
+                                <div class="col">
+                                    <div class="ilan-detay-baslik">E-posta</div>
+                                    <div class="ilan-detay-text">@Model.IlanVeren.Email</div>
+                                </div>
+                                <div class="col">
+                                    <div class="ilan-detay-baslik">İletişim Numarası</div>
+                                    <div class="ilan-detay-text">@Model.IlanVeren.PhoneNumber</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col">
+                    <div class="card border-0 bg-light position-relative ilan-detay h-100">
+                        <i class="far fa-id-badge position-absolute ilan-detay-image"></i>
+                        <div class="card-body">
+                            <h5 class="text-darkred card-title mb-3">İlan Veren</h5>
+                            <div class="row gy-3">
+                                <div class="col">
+                                    <div class="ilan-detay-baslik">İlanı oluşturan kişi bilinmiyor</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+</main>

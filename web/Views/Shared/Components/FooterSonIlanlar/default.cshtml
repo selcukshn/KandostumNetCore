@@ -1,0 +1,15 @@
+@using data
+@model List<Ilanlar>
+@foreach (var ilan in Model)
+{
+    <div class="footer-son-ilanlar-item">
+        <p class="m-0">
+            @((ilan.IlanOzeti as String).Count()>100?
+        (ilan.IlanOzeti as String).Substring(0,100)+"...":ilan.IlanOzeti)
+        </p>
+        <small class="text-danger"><b>@ilan.KanGrubu.KanGrubu</b></small>
+
+        <small class="text-muted">| @ilan.IlanTarihi |</small>
+        <a asp-controller="home" asp-action="ilandetay" asp-route-id="@ilan.IlanId">İlana git</a>
+    </div>
+}

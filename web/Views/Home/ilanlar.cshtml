@@ -1,0 +1,229 @@
+@{
+    string getQuery = "";
+    if (!String.IsNullOrEmpty(ViewBag.sehir.ToString()))
+    {
+        getQuery += "&sehir=" + (ViewBag.sehir.ToString());
+    }
+    if (!String.IsNullOrEmpty(ViewBag.ilce.ToString()))
+    {
+        getQuery += "&ilce=" + (ViewBag.ilce.ToString());
+    }
+    if (!String.IsNullOrEmpty(ViewBag.kangrubuid.ToString()))
+    {
+        getQuery += "&kangrubuid=" + (ViewBag.kangrubuid.ToString());
+    }
+}
+@model IlanlarPageModel
+@{
+    ViewData["Title"] = "Tüm ilanlar";
+    var PageInfo = Model.PageInfo;
+}
+<style>
+    .blood-type {
+        font-size: 1.5VW;
+    }
+
+    @@media(max-width: 1599px) {
+        .blood-type {
+            font-size: 2VW;
+        }
+    }
+
+    @@media(max-width:1365px) {
+        .blood-type {
+            font-size: 2.5VW;
+        }
+    }
+
+    @@media(max-width:1199px) {
+        .blood-type {
+            font-size: 3VW;
+        }
+    }
+
+    @@media(max-width:991px) {
+        .blood-type {
+            font-size: 4VW;
+        }
+    }
+
+    @@media(max-width:767px) {
+        .blood-type {
+            font-size: 5VW;
+        }
+    }
+
+    @@media(max-width:575px) {
+        .blood-pack {
+            text-align: center;
+        }
+
+        .blood-pack img {
+            height: 200px;
+        }
+
+        .blood-type {
+            bottom: calc(100% - 86%);
+            left: calc(100% - 63%);
+            font-size: 2.3rem;
+        }
+    }
+</style>
+<main class="my-5">
+    <div class="container-lg bg-white py-3">
+        <form asp-controller="home" asp-action="ilanlar" method="get"
+            class="mb-3 d-flex justify-content-end align-items-end">
+            @if (!String.IsNullOrEmpty(ViewBag.sehir.ToString()) || !String.IsNullOrEmpty(ViewBag.ilce.ToString()) ||
+            !String.IsNullOrEmpty(ViewBag.kangrubuid.ToString()))
+            {
+                <a asp-controller="home" asp-action="ilanlar" class="btn btn-outline-danger btn-sm rounded-0">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            }
+            else
+            {
+                <button disabled class="btn btn-outline-danger btn-sm rounded-0">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            }
+
+            <div class="ilanlar-select">
+                <label>Şehir</label>
+                <select id="sehirler" name="sehir" class="form-select" aria-label="Default select example">
+                    <option disabled data-id="0" selected>Seçiniz</option>
+                    @foreach (var sehir in Model.Sehirler)
+                    {
+                        @if (sehir.SehirAd == ViewBag.sehir)
+                        {
+                            <option data-id="@sehir.SehirId" value="@sehir.SehirAd" selected>@sehir.SehirAd</option>
+                            continue;
+                        }
+                        <option data-id="@sehir.SehirId" value="@sehir.SehirAd">@sehir.SehirAd</option>
+                    }
+                </select>
+            </div>
+
+            <div class="ilanlar-select">
+                <label>İlçe</label>
+                <select id="ilceler" name="ilce" class="form-select" aria-label="Default select example" disabled>
+                    <option disabled selected>Seçiniz</option>
+                </select>
+            </div>
+
+            <div class="ilanlar-select">
+                <label>Kan grubu</label>
+                <select name="kangrubuid" class="form-select" aria-label="Default select example">
+                    <option disabled selected>Seçiniz</option>
+                    @foreach (var kangruplari in Model.KanGruplari)
+                    {
+                        @if (kangruplari.KanGrubuId.ToString() == ViewBag.kangrubuid.ToString())
+                        {
+                            <option value="@kangruplari.KanGrubuId" selected>@kangruplari.KanGrubu</option>
+                            continue;
+                        }
+                        <option value="@kangruplari.KanGrubuId">@kangruplari.KanGrubu</option>
+                    }
+                </select>
+            </div>
+            <button type="submit" class="btn btn-success rounded-0" style="width:100px ;">Ara</button>
+        </form>
+        @if (Model.Ilanlar.Count() > 0)
+        {
+            @foreach (var ilan in Model.Ilanlar)
+            {
+                <a asp-controller="home" asp-action="ilandetay" asp-route-id="@ilan.IlanId"
+            class="ilan-liste d-block text-black">
+                    <div class="row g-0">
+                        <div class="blood-pack col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2">
+                            <img src="~/images/bloodpack-clean-crop-3.jpg" class="img-fluid">
+                            <span class="blood-type">@ilan.HastaKanGrubu</span>
+                        </div>
+                        <div class="col-12 col-sm-7 col-md-8 col-lg-9 col-xl-10 py-2 px-3">
+                            <div>
+                                <b class="me-2">@ilan.HastaAd</b>
+                                <span class="ilan-detay-text badge bg-danger">@ilan.HastaKanGrubu</span>
+                            </div>
+                            <div class="text-muted mb-2">
+                                @ilan.HastaSehir / @ilan.HastaIlce
+                            </div>
+                            <p class="m-0" style="font-size:0.9rem ;">
+                                @((ilan.IlanOzet as String).Count()>250?
+                        (ilan.IlanOzet as String).Substring(0,250)+"...":ilan.IlanOzet)
+                            </p>
+                            <div class="text-end mt-auto">
+                                <small class="text-muted">@ilan.IlanTarih</small>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            }
+            <div class="text-center mt-3">
+                <nav class="d-inline-block">
+                    <ul class="pagination">
+                        @if (PageInfo.CurrentPage > 1)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="/home/ilanlar?page=@(PageInfo.CurrentPage-1)@getQuery"
+                            aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        }
+
+                        @for (int i = 0; i < PageInfo.TotalPages(); i++)
+                        {
+                            <li class="page-item @(PageInfo.CurrentPage==i+1?"active":"")">
+                                <a class="page-link" href="/home/ilanlar?page=@(i+1)@getQuery">@(i+1)</a>
+                            </li>
+                        }
+
+                        @if (PageInfo.CurrentPage < PageInfo.TotalPages())
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="/home/ilanlar?page=@(PageInfo.CurrentPage+1)@getQuery"
+                            aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+            </div>
+        }
+        else
+        {
+            <h5 class="text-center py-5 bg-secondary bg-opacity-25">Aradığınız kriterlere uygun ilan bulunamadı...</h5>
+        }
+    </div>
+</main>
+@section Scripts{
+<script>
+    $(function () {
+        var sehirId = $("#sehirler option:selected").attr("data-id");
+        function fillIlceler(sehirId) {
+            if (sehirId != 0 || sehirId != "0") {
+                $("#ilceler option").not(":first").remove();
+
+                $("#ilceler").prop("disabled", false);
+                $.ajax({
+                    method: "GET",
+                    url: '@Url.Action("ilcelerigetir","home")' + '/' + sehirId
+                }).done(function (data) {
+                    var html = "";
+                    for (let i = 0; i < data.length; i++) {
+                        html += `<option value="${data[i].ilceAd}" >${data[i].ilceAd}</option>`
+                    }
+                    $("#ilceler").append(html);
+                })
+            } else {
+                $("#ilceler option").not(":first").remove();
+                $("#ilceler").prop("disabled", true);
+            }
+        }
+        fillIlceler(sehirId);
+        $("#sehirler").change(function () {
+            fillIlceler(sehirId);
+        })
+    })
+</script>
+}

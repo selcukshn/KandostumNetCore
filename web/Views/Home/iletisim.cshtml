@@ -1,0 +1,51 @@
+@model IletisimModel
+@{
+    ViewData["Title"] = "İletişim";
+}
+<main class="my-5">
+    <div class="container bg-white">
+        <partial name="_alert" class="mt-2">
+            <div class="row py-5">
+                <div class="col-10 offset-1">
+                    <h1 class="mb-5 display-6">İletişim</h1>
+                </div>
+                <div class="col-10 offset-1">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <form asp-controller="home" asp-action="iletisim" method="post" class="row">
+                        <div class="mb-3 col-6">
+                            <label class="form-label">Ad</label>
+                            <input asp-for="Ad" type="text" class="form-control rounded-0 p-2-5">
+                            <span asp-validation-for="Ad" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 col-6">
+                            <label class="form-label">Soyad</label>
+                            <input asp-for="Soyad" type="text" class="form-control rounded-0 p-2-5">
+                            <span asp-validation-for="Soyad" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 col-6">
+                            <label class="form-label">E-posta</label>
+                            <input asp-for="Eposta" type="email" class="form-control rounded-0 p-2-5">
+                            <span asp-validation-for="Eposta" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 col-6">
+                            <label class="form-label">Konu</label>
+                            <input asp-for="Konu" type="text" class="form-control rounded-0 p-2-5">
+                            <span asp-validation-for="Konu" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 col-12">
+                            <label class="form-label">Mesaj</label>
+                            <textarea asp-for="Mesaj" class="form-control" rows="5"></textarea>
+                            <span asp-validation-for="Mesaj" class="text-danger"></span>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-danger rounded-0 p-2-5">Gönder</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </div>
+</main>
+@section Scripts{
+<script src="~/js/jquery.validate.min.js"></script>
+<script src="~/js/jquery.validate.unobtrusive.min.js"></script>
+}

@@ -1,0 +1,205 @@
+@model IlanVerModel
+@{
+    ViewData["Title"] = "İlan Oluştur";
+}
+<main class="my-5">
+    <section class="container bg-white rounded pt-3">
+        <partial name="_alert">
+            <form asp-controller="home" asp-action="ilanver" method="POST" class="form row">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="col-8 m-auto py-5">
+                    <h1 class="mb-5 display-6">İlan Oluştur</h1>
+                    <div class="row">
+                        <h5 class="text-darkred mb-3">İlan Veren</h5>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="col-12 py-3 bg-secondary bg-opacity-10 rounded">
+                                <div class="row mb-2">
+                                    <div class="col-2 fw-bold">T.C. Kimlik No</div>
+                                    <div class="col-10">@Model.User.Tc</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-2 fw-bold">İsim</div>
+                                    <div class="col-10">@Model.User.Ad</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-2 fw-bold">E-posta</div>
+                                    <div class="col-10">@Model.User.Email</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-2 fw-bold">Telefon</div>
+                                    <div class="col-10">@Model.User.PhoneNumber</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-2 fw-bold">Şehir</div>
+                                    <div class="col-10">@Model.User.Sehir</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-2 fw-bold">Adres</div>
+                                    <div class="col-10">@Model.User.Adres</div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-12 p-3 bg-warning bg-opacity-25 rounded">
+                                <h2 class="h5">İlan anonim olarak oluşturuluyor.</h2>
+                                <div>
+                                    <p class="m-0">İlan da bilgilerinizin de gözükmesi için lütfen
+                                        <a asp-controller="account" asp-action="kayitol"
+                                        class="text-decoration-underline">üye olun</a>
+                                        veya hesabınıza
+                                        <a asp-controller="account" asp-action="girisyap"
+                                        class="text-decoration-underline">giriş
+                                            yapın</a>
+                                    </p>
+                                </div>
+
+                            </div>
+                        }
+
+                        <h5 class="text-darkred my-3">Hasta Bilgileri</h5>
+                        <div class="mb-3 col-6">
+                            <label class="form-label">İsim</label>
+                            <input asp-for="HastaTamAd" type="text" class="form-control rounded-0 p-2-5">
+                            <span asp-validation-for="HastaTamAd" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 col-6">
+                            <label class="form-label">Yaş</label>
+                            <input asp-for="HastaYas" type="number" class="form-control rounded-0 p-2-5">
+                            <span asp-validation-for="HastaYas" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 col-6">
+                            <label class="form-label">İletişim Numarası</label>
+                            <input asp-for="IletisimNumarasi1" type="number" class="form-control rounded-0 p-2-5">
+                            <span asp-validation-for="IletisimNumarasi1" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 col-6">
+                            <label class="form-label">İletişim Numarası<small class="text-muted ms-1">(isteğe
+                                    bağlı)</small></label>
+                            <input asp-for="IletisimNumarasi2" type="number" class="form-control rounded-0 p-2-5">
+                            <span asp-validation-for="IletisimNumarasi2" class="text-danger"></span>
+                        </div>
+                        <h5 class="text-darkred my-3">İlan Detayı</h5>
+                        <div class="mb-3 col-6">
+                            <label class="form-label">Hastanın Tedavi Gördüğü Şehir</label>
+                            <select id="sehirler" class="form-select rounded-0 p-2-5">
+                                <option value="0" selected>Seçiniz</option>
+                                @foreach (var sehir in Model.Sehirler)
+                                {
+                                    <option data-name="@sehir.SehirAd" value="@sehir.SehirId">@sehir.SehirAd</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="mb-3 col-6">
+                            <label class="form-label">Hastanın Tedavi Gördüğü İlçe</label>
+                            <select id="ilceler" class="form-select rounded-0 p-2-5" disabled>
+                                <option value="0" selected>Seçiniz</option>
+                            </select>
+                        </div>
+                        <div class="mb-3 col-12">
+                            <label class="form-label">Hastanın Tedavi Gördüğü Hastane</label>
+                            <select asp-for="HastaneId" id="hastaneler" class="form-select rounded-0 p-2-5" disabled>
+                                <option value="0" selected>Seçiniz</option>
+                            </select>
+                            <span asp-validation-for="HastaneId" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 col-6">
+                            <label class="form-label">Kan Grubu</label>
+                            <select asp-for="KanGrubuId" class="form-select rounded-0 p-2-5">
+                                <option value="0" selected>Seçiniz</option>
+                                <option value="1">A Rh-</option>
+                                <option value="2">B Rh-</option>
+                                <option value="3">AB Rh-</option>
+                                <option value="4">0 Rh-</option>
+                                <option value="5">A Rh+</option>
+                                <option value="6">B Rh+</option>
+                                <option value="7">AB Rh+</option>
+                                <option value="8">0 Rh+</option>
+                            </select>
+                            <span asp-validation-for="KanGrubuId" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 col-6">
+                            <label class="form-label">Gerekli Ünite Adeti</label>
+                            <input asp-for="GerekliUnite" type="number" class="form-control rounded-0 p-2-5">
+                            <span asp-validation-for="GerekliUnite" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 col-12">
+                            <label class="form-label">İlan Metni</label>
+                            <textarea asp-for="IlanOzeti" class="form-control" rows="5"></textarea>
+                            <span asp-validation-for="IlanOzeti" class="text-danger"></span>
+                        </div>
+                        <div class="d-grid">
+                            <button id="register" type="submit" class="btn btn-danger rounded-0 p-2-5">Oluştur</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+    </section>
+</main>
+@section Scripts{
+<script src="~/js/jquery.validate.min.js"></script>
+<script src="~/js/jquery.validate.unobtrusive.min.js"></script>
+<script>
+    $(function () {
+        $("#sehirler").change(function () {
+            var sehirId = $(this).val();
+
+            if (sehirId != 0 || sehirId != "0") {
+                $("#ilceler option").not(":first").remove();
+
+                $("#hastaneler option").not(":first").remove();
+                $("#hastaneler").prop("disabled", true);
+
+                $("#ilceler").prop("disabled", false);
+                $.ajax({
+                    method: "GET",
+                    url: '@Url.Action("ilcelerigetir","home")' + '/' + sehirId
+                }).done(function (data) {
+                    var html = "";
+                    for (let i = 0; i < data.length; i++) {
+                        html += `<option value="${data[i].ilceId}" >${data[i].ilceAd}</option>`
+                    }
+                    $("#ilceler").append(html);
+                })
+            } else {
+                $("#ilceler option").not(":first").remove();
+                $("#ilceler").prop("disabled", true);
+
+                $("#hastaneler option").not(":first").remove();
+                $("#hastaneler").prop("disabled", true);
+            }
+        })
+
+        $("#ilceler").change(function () {
+            var ilceId = $(this).val();
+            var sehirId = $("#sehirler").val();
+
+            if (ilceId != 0 || ilceId != "0") {
+                $("#hastaneler option").not(":first").remove();
+                $("#hastaneler").prop("disabled", false);
+
+                $.ajax({
+                    method: "GET",
+                    url: '@Url.Action("hastanelerigetir","home")' + '/' + sehirId + '/' + ilceId
+                }).done(function (data) {
+                    var html = "";
+
+                    if (data.length == 0) {
+                        html = `<option value="0" >Bulunamadı</option>`
+                    } else {
+                        for (let i = 0; i < data.length; i++) {
+                            html += `<option value="${data[i].hastaneId}" >${data[i].ad}</option>`
+                        }
+                    }
+                    $("#hastaneler").append(html);
+                })
+
+            } else {
+                $("#hastaneler option").not(":first").remove();
+                $("#hastaneler").prop("disabled", true);
+            }
+        })
+    })
+</script>
+}

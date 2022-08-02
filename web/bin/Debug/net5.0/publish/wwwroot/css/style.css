@@ -1,0 +1,405 @@
+/***** Global *****/
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&display=swap');
+
+body {
+    background-color: #F5F5F5;
+}
+
+.bg-darkred {
+    background-color: #B71C1C;
+}
+
+.text-darkred {
+    color: #B71C1C;
+}
+
+.z-index-99 {
+    z-index: 99;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul,
+ol {
+    list-style: none;
+    padding: 0;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+}
+
+.section-title {
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+
+.p-2-5 {
+    padding: 0.7rem 0.9rem;
+}
+
+/*-----------------*/
+
+/***** Header *****/
+#logo img {
+    width: 50px;
+    height: 50px;
+}
+
+#logo div {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+#logo .s {
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+
+.account-button {
+    border: 3px solid #E0E0E0;
+    padding: 0.8rem 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: white;
+    font-size: 0.75rem;
+    color: #B71C1C;
+    transition: all .5s;
+}
+
+.account-button:hover {
+    color: #B71C1C;
+}
+
+.nav {
+    background-color: white;
+    border-radius: 0 0 5px 5px;
+}
+
+.navigation-container {
+    border-radius: 0 0 5px 5px;
+}
+
+.nav li a {
+    text-transform: uppercase;
+    padding: 1rem 1.6rem;
+    font-weight: bold;
+    color: #424242;
+    font-size: 0.9rem;
+}
+
+.nav li a:hover {
+    background-color: #EEEEEE;
+    color: #424242;
+}
+
+.nav li a:focus {
+    background-color: #E0E0E0;
+    color: #424242;
+}
+
+.dropdown ul li a {
+    padding: .5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/** Indropdown **/
+.dropdown-menu li {
+    position: relative;
+}
+
+.indropdown {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: calc(100%);
+    background-color: white;
+}
+
+.indropdown-link {
+    border-bottom: 1px solid #E0E0E0;
+    display: block;
+    min-width: 100px;
+}
+
+#pozitif:hover .indropdown {
+    display: block;
+}
+
+#negatif:hover .indropdown {
+    display: block;
+}
+
+/*-----------------*/
+
+/***** Carousel *****/
+.carousel-caption {
+    bottom: 3rem;
+    color: black;
+}
+
+.carousel-item {
+    height: 32rem;
+}
+
+.carousel-item>img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 32rem;
+}
+
+#myCarousel {
+    z-index: 0;
+}
+
+/*-----------------*/
+
+/***** Son ilanlar *****/
+.blood-pack {
+    position: relative;
+}
+
+.blood-type {
+    position: absolute;
+    bottom: calc(100% - 86%);
+    left: calc(100% - 75%);
+    font-weight: bold;
+    font-size: 2.4VW;
+    color: #424242;
+    cursor: default;
+}
+
+#sonIlanlarSlider {
+    position: relative;
+}
+
+#sonIlanlarSlider .MS-content {
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 0 5%;
+}
+
+#sonIlanlarSlider .MS-content .item {
+    display: inline-block;
+    width: 25%;
+    position: relative;
+    vertical-align: top;
+    overflow: hidden;
+    height: 100%;
+    white-space: normal;
+    padding: 0 4px;
+}
+
+#sonIlanlarSlider .MS-controls button {
+    position: absolute;
+    top: calc((100% - 50%) - 8VH);
+    border: none;
+    background-color: transparent;
+    font-size: 4VW;
+    color: #9E9E9E;
+    transition: 0.3s color;
+}
+
+#sonIlanlarSlider .MS-controls button:hover {
+    color: #616161;
+}
+
+#sonIlanlarSlider .MS-controls .MS-left {
+    left: 0;
+}
+
+#sonIlanlarSlider .MS-controls .MS-right {
+    right: 0;
+}
+
+/**/
+
+footer {
+    font-size: .9rem;
+}
+
+.footer-site-map-item {
+    margin: 4px 0;
+
+}
+
+.footer-site-map-link {
+    color: #212121;
+}
+
+.footer-site-map-link:hover {
+    text-decoration: underline;
+}
+
+.footer-son-ilanlar .footer-son-ilanlar-item {
+    padding: 5px 0;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+.footer-info {
+    font-size: .8rem;
+}
+
+.footer-info> :first-child {
+    margin-bottom: 10px;
+}
+
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.ilan-detay {
+    overflow: hidden;
+}
+
+.ilan-detay .card-body {
+    z-index: 1;
+}
+
+.ilan-detay-baslik {
+    font-weight: bold;
+}
+
+.ilan-detay-text {
+    padding-left: 1rem;
+}
+
+.ilan-detay-image {
+    opacity: 10%;
+    font-size: 20vw;
+    right: 10px;
+    bottom: 10px;
+}
+
+.ilanlar-select {
+    display: inline-block;
+    width: 150px;
+    margin: 0 0.2rem;
+}
+
+.ilanlar-select label {
+    font-weight: bold;
+    font-size: 0.75rem;
+}
+
+.ilan-liste {
+    padding: .5rem 0;
+    transition: all 0.1s;
+}
+
+.ilan-liste:nth-child(even) {
+    background-color: #F5F5F5;
+}
+
+.ilan-liste:hover {
+    background-color: #FFEBEE;
+}
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+@media (max-width:991px) {
+
+    .carousel-item img,
+    .carousel-item {
+        height: 26rem;
+    }
+
+    .account-button {
+        padding: 0.6rem 1rem;
+        font-size: .7rem;
+    }
+
+    #navbar .nav-link {
+        padding: .8rem 1.4rem;
+        font-size: 0.8rem;
+    }
+
+    .blood-type {
+        bottom: calc(100% - 86%);
+        left: calc(100% - 75%);
+        font-size: 5VW;
+    }
+}
+
+@media (max-width:767px) {
+
+    .carousel-item img,
+    .carousel-item {
+        height: 20rem;
+    }
+
+    .account-button {
+        padding: 0.4rem 0.8rem;
+        font-size: .65rem;
+    }
+
+    #navbar .nav-link {
+        padding: .6rem;
+        font-size: 0.7rem;
+    }
+
+    .blood-type {
+        bottom: calc(100% - 86%);
+        left: calc(100% - 75%);
+        font-size: 10VW;
+    }
+}
+
+@media (max-width:551px) {
+
+    .carousel-item img,
+    .carousel-item {
+        height: 14rem;
+    }
+}
+
+@media (max-width:349px) {
+
+    .carousel-item img,
+    .carousel-item {
+        height: 10rem;
+    }
+}
+
+@media (min-width: 40em) {
+
+    /* Bump up size of carousel content */
+    .carousel-caption p {
+        margin-bottom: 1.25rem;
+        font-size: 1.25rem;
+        line-height: 1.4;
+    }
+
+    .featurette-heading {
+        font-size: 50px;
+    }
+}
+
+@media (min-width: 62em) {
+    .featurette-heading {
+        margin-top: 7rem;
+    }
+}

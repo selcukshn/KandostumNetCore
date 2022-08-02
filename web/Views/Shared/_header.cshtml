@@ -1,0 +1,107 @@
+<header>
+    <div class="px-3 py-2 bg-darkred text-white">
+        <div class="container-lg">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-auto text-white text-decoration-none">
+                    <div id="logo" class="d-flex pe-3 bg-white rounded-pill justify-content-center align-items-center">
+                        <img src="~/images/logopart.png" class="img-fluid me-1">
+                        <div>
+                            <div class="text-dark f">Kan</div>
+                            <div class="text-dark s">Dostum</div>
+                        </div>
+                    </div>
+                </a>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="text-end">
+                        @* <span> @User.Identity.Name</span> *@
+                        <a asp-controller="account" asp-action="cikisyap" type="button" class="account-button me-2">
+                            <i class="fas fa-sign-out-alt me-2 fa-lg"></i>Çıkış yap
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    <div class="text-end">
+                        <a asp-controller="account" asp-action="kayitol" type="button" class="account-button me-2">
+                            <i class="far fa-user-circle me-2 fa-lg"></i>Üye ol</a>
+                        <a asp-controller="account" asp-action="girisyap" type="button" class="account-button">
+                            <i class="far fa-user-circle me-2 fa-lg"></i>Giriş yap</a>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+    <div id="navbar" class="d-flex z-index-99 flex-wrap bg-white justify-content-center">
+        <ul class="nav z-index-99 col-12 col-lg-auto justify-content-center my-0 text-small ">
+            <li>
+                <a href="/" class="nav-link">
+                    Anasayfa
+                </a>
+            </li>
+            <li>
+                <a asp-controller="home" asp-action="hakkimizda" class="nav-link">
+                    Hakkımızda
+                </a>
+            </li>
+            <li>
+                <a asp-controller="home" asp-action="ilanlar" class="nav-link">
+                    Kan ilanları
+                </a>
+            </li>
+            @* <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Kan ilanları
+                </a>
+                <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDarkDropdownMenuLink">
+                <li id="pozitif">
+                <a asp-controller="home" asp-action="pozitiflist"
+                class="dropdown-item d-flex justify-content-between align-items-center">Pozitif<i
+                class="fas fa-chevron-right"></i>
+                </a>
+                <ul class="indropdown border pozitif">
+                <li class="indropdown-item"><a href="#" class="indropdown-link">A Rh+</a></li>
+                <li class="indropdown-item"><a href="#" class="indropdown-link">B Rh+</a></li>
+                <li class="indropdown-item"><a href="#" class="indropdown-link">AB Rh+</a></li>
+                <li class="indropdown-item"><a href="#" class="indropdown-link">0 Rh+</a></li>
+                </ul>
+                </li>
+                <li id="negatif">
+                <a asp-controller="home" asp-action="negatiflist"
+                class="dropdown-item d-flex justify-content-between align-items-center">Negatif<i
+                class="fas fa-chevron-right"></i>
+                </a>
+                <ul class="indropdown border pozitif">
+                <li class="indropdown-item"><a href="#" class="indropdown-link">A Rh-</a></li>
+                <li class="indropdown-item"><a href="#" class="indropdown-link">B Rh-</a></li>
+                <li class="indropdown-item"><a href="#" class="indropdown-link">AB Rh-</a></li>
+                <li class="indropdown-item"><a href="#" class="indropdown-link">0 Rh-</a></li>
+                </ul>
+                </li>
+                <li>
+                <a asp-controller="home" asp-action="ilanlar"
+                class="dropdown-item d-flex justify-content-between align-items-center">Tüm ilanlar
+                </a>
+                </li>
+                </ul>
+                </li> *@
+            <li>
+                <a asp-controller="home" asp-action="ilanver" class="nav-link">
+                    Kan ilanı ver
+                </a>
+            </li>
+            <li>
+                <a asp-controller="home" asp-action="kanvermeninonemi" class="nav-link">
+                    Kan vermenin önemi
+                </a>
+            </li>
+            <li>
+                <a asp-controller="home" asp-action="iletisim" class="nav-link">
+                    İletişim
+                </a>
+            </li>
+        </ul>
+    </div>
+</header>

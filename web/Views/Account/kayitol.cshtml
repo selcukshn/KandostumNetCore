@@ -1,0 +1,129 @@
+@model KayitOlModel
+@{
+    ViewData["Title"] = "Kayıt ol";
+}
+<main class="my-5">
+    <section class="container bg-white rounded">
+        <form asp-controller="account" asp-action="kayitol" method="POST" class="form row">
+            <div class="col-8 m-auto py-5">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <h1 class="mb-5 display-6">Üye Ol</h1>
+                <div class="row">
+                    <h5 class="text-darkred mb-3">Kişisel Bilgiler</h5>
+                    <div class="mb-3 col-6">
+                        <label class="form-label">Ad</label>
+                        <input asp-for="Ad" type="text" class="form-control rounded-0 p-2-5">
+                        <span asp-validation-for="Ad" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-6">
+                        <label class="form-label">Soyad</label>
+                        <input asp-for="Soyad" type="text" class="form-control rounded-0 p-2-5">
+                        <span asp-validation-for="Soyad" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-6">
+                        <label class="form-label">Cinsiyet</label>
+                        <select asp-for="Cinsiyet" class="form-select rounded-0 p-2-5">
+                            <option selected>Seçiniz</option>
+                            <option value="Erkek">Erkek</option>
+                            <option value="Kadın">Kadın</option>
+                        </select>
+                        <span asp-validation-for="Cinsiyet" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-6">
+                        <label class="form-label">Cep Telefonu</label>
+                        <input asp-for="Telefon" type="number" class="form-control rounded-0 p-2-5">
+                        <span asp-validation-for="Telefon" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-6">
+                        <label class="form-label">T.C. Kimlik No</label>
+                        <input asp-for="Tc" type="number" class="form-control rounded-0 p-2-5">
+                        <span asp-validation-for="Tc" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-6">
+                        <label class="form-label">E-posta</label>
+                        <input asp-for="Eposta" type="email" class="form-control rounded-0 p-2-5">
+                        <span asp-validation-for="Eposta" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-6">
+                        <label class="form-label">Medeni Durum</label>
+                        <select asp-for="MedeniDurum" class="form-select rounded-0 p-2-5">
+                            <option selected>Seçiniz</option>
+                            <option value="Evli">Evli</option>
+                            <option value="Bekar">Bekar</option>
+                        </select>
+                        <span asp-validation-for="MedeniDurum" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-6">
+                        <label class="form-label">Kan Grubu</label>
+                        <select asp-for="KanGrubu" class="form-select rounded-0 p-2-5">
+                            <option value="0" selected>Seçiniz</option>
+                            <option value="1">A Rh-</option>
+                            <option value="2">B Rh-</option>
+                            <option value="3">AB Rh-</option>
+                            <option value="4">0 Rh-</option>
+                            <option value="5">A Rh+</option>
+                            <option value="6">B Rh+</option>
+                            <option value="7">AB Rh+</option>
+                            <option value="8">0 Rh+</option>
+                        </select>
+                        <span asp-validation-for="KanGrubu" class="text-danger"></span>
+                    </div>
+
+                    <h5 class="text-darkred my-3">Adres Bilgileri</h5>
+                    <div class="mb-3 col-6">
+                        <label class="form-label">Şehir</label>
+                        <select asp-for="Sehir" id="cities" class="form-select rounded-0 p-2-5">
+                            <option value="0" selected>Seçiniz</option>
+                        </select>
+                        <span asp-validation-for="Sehir" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-6">
+                        <label class="form-label">İlçe</label>
+                        <select asp-for="Ilce" id="districts" class="form-select rounded-0 p-2-5" disabled>
+                            <option value="0" selected>Seçiniz</option>
+                        </select>
+                        <span asp-validation-for="Ilce" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-12">
+                        <label class="form-label">Adres</label>
+                        <textarea asp-for="Adres" class="form-control" rows="5"></textarea>
+                        <span asp-validation-for="Adres" class="text-danger"></span>
+                    </div>
+
+                    <h5 class="text-darkred my-3">Şifre Bilgileri</h5>
+                    <div class="mb-3 col-6">
+                        <label class="form-label">Şifre</label>
+                        <input asp-for="Sifre" type="password" class="form-control rounded-0 p-2-5">
+                        <span asp-validation-for="Sifre" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-6">
+                        <label class="form-label">Şifre Tekrar</label>
+                        <input asp-for="SifreTekrar" type="password" class="form-control rounded-0 p-2-5">
+                        <span asp-validation-for="SifreTekrar" class="text-danger"></span>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-danger rounded-0 p-2-5">Kaydı
+                            Tamamla</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+</main>
+
+@section Scripts{
+<script src="~/js/jquery.validate.min.js"></script>
+<script src="~/js/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/js/register.js"></script>
+}

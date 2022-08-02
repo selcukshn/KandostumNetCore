@@ -1,0 +1,61 @@
+<footer class="bg-white text-black">
+    <div class="container py-5">
+        <div class="row row-cols-1 row-cols-lg-3">
+            <div class="col">
+                <h4 class="mb-4">Hakkımızda</h4>
+                <p>Siz de kan bağışçısı olarak başkalarına armağanda bulunun Her yıl binlerce insan, bir kaza ya da
+                    hastalık sonucunda kan bulamadığı için hayatını kaybetmektedir.
+                    Kan ise üretilemeyen, tek kaynağı bağışçı olan bir ihtiyaç durumunda hayati önem taşıyan bir
+                    dokudur.
+                    “Kan Bağışı; yaşam için yapılan bir armağandır”. Kan bağışında bulunarak binlerce insanın
+                    hayatını kurtaracaksınız. Kan vermenin hiçbir yan etkisi bulunmamaktadır aksine kendi sağlığınız
+                    açısından birçok hastalığın önüne geçmiş olacaksınız.</p>
+            </div>
+            <div class="col">
+                <h4 class="mb-4">Site Haritası</h4>
+                <ul class="footer-site-map">
+                    <li class="footer-site-map-item">
+                        <a href="/" class="footer-site-map-link">Anasayfa</a>
+                    </li>
+                    <li class="footer-site-map-item">
+                        <a asp-controller="home" asp-action="hakkimizda" class="footer-site-map-link">Hakkımızda</a>
+                    </li>
+                    <li class="footer-site-map-item">
+                        <a asp-controller="home" asp-action="ilanlar" class="footer-site-map-link">Kan ilanları</a>
+                    </li>
+                    <li class="footer-site-map-item">
+                        <a asp-controller="home" asp-action="ilanver" class="footer-site-map-link">Kan ilanı ver</a>
+                    </li>
+                    <li class="footer-site-map-item">
+                        <a asp-controller="home" asp-action="kanvermeninonemi" class="footer-site-map-link">Kan vermenin
+                            önemi</a>
+                    </li>
+                    <li class="footer-site-map-item">
+                        <a asp-controller="home" asp-action="iletisim" class="footer-site-map-link">İletişim</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col footer-son-ilanlar">
+                <h4 class="mb-4">Son ilanlar</h4>
+                @await Component.InvokeAsync("FooterSonIlanlar")
+
+                <div><a asp-controller="home" asp-action="tumilanlar">Son ilanlara git</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="bg-black text-white">
+        <div class="container py-3 footer-info">
+            <div>
+                Kan Dostum Bir Sosyal Sorumluluk Projesi'dir. Hiçbir Devlet Kurumu veya Özel Kuruluş ile
+                bağlantısı yoktur!
+                <br>
+                BU SİTE SADECE KİŞİLER ARASINDA İLETİŞİM KURAR. KAN BAĞIŞI ORGANAZİSYONU YETKİLİ KURUMLARCA
+                YAPILABİLİR.
+            </div>
+            <div class="d-flex justify-content-between">
+                <span>© 2022 Kan Dostum - Tüm hakları saklıdır</span>
+                <span>Destekleriniz için teşekkür ederiz.</span>
+            </div>
+        </div>
+    </div>
+</footer>
